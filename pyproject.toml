@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=61.0", "wheel", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -36,3 +36,8 @@ Issues = "https://github.com/SomersetNHSFoundationTrust/sfttoolbox/issues"
 [tool.setuptools.packages.find]
 where = ["."]
 exclude = ["notebooks"]
+
+
+[tool.setuptools_scm]
+version_scheme = "guess-next-dev"
+local_scheme = "no-local-version"
