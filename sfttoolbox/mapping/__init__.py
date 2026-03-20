@@ -21,15 +21,22 @@ class SomersetMap:
 
     def __init__(
         self,
-        somerset_boundary_filepath="somerset_geojson_files\somerset_boundary.geojson",
+        somerset_boundary_filepath: str,
     ) -> None:
+        
+        if not somerset_boundary_filepath:
+            raise ValueError(
+                "You must provide a filepath to the Somerset boundary GeoJSON file."                
+            )
+
         """
         Initialise SomersetMap with base layers and data sources.
 
 
         Args:
-            somerset_boundary_filepath (str, optional): Filepath to the somerset boundary. Defaults to "somerset_geojson_files\somerset_boundary.geojson".
+            somerset_boundary_filepath (str, optional): Filepath to the somerset boundary.
         """
+        
         self.somerset_map = folium.Map(location=(51.1, -3.12), zoom_start=10)
 
         self.ig = IsochroneGenerator()
@@ -200,8 +207,8 @@ class SomersetMap:
 
     def add_deprivation(
         self,
-        geo_data: str = "somerset_geojson_files\somerset_lsoa2011.geojson",
-        data_filepath: str = "somerset_geojson_files\File_7_-_All_IoD2019_Scores__Ranks__Deciles_and_Population_Denominators_3.csv",
+        geo_data: str,
+        data_filepath: str,
         columns: List[str] = [
             "LSOA code (2011)",
             "Index of Multiple Deprivation (IMD) Decile (where 1 is most deprived 10% of LSOAs)",
@@ -212,8 +219,8 @@ class SomersetMap:
         Add deprivation data to the map.
 
         Args:
-            geo_data (str, optional): Filepath to the geographical data. Defaults to "somerset_geojson_files\chloropleth_compatible_somerset_lsoa2011.geojson".
-            data_filepath  (str, optional): Filepath to the data. Defaults to "somerset_geojson_files\File_7_-_All_IoD2019_Scores__Ranks__Deciles_and_Population_Denominators_3.csv"
+            geo_data (str, optional): Filepath to the geographical data.
+            data_filepath  (str, optional): Filepath to the data. D
             columns (list[tuple[float, float]], optional): columns to use from the data. Defaults to ['LSOA code (2011)', 'Index of Multiple Deprivation (IMD) Decile (where 1 is most deprived 10% of LSOAs)']
             key_on (str, optional): Name of the feature in the geographical data to merge with the first column above. Defaults to properties.LSOA11CD
         """
@@ -228,8 +235,8 @@ class SomersetMap:
 
     def add_population(
         self,
-        geo_data: str = "somerset_geojson_files\somerset_lsoa2011.geojson",
-        data_filepath: str = "somerset_geojson_files\File_7_-_All_IoD2019_Scores__Ranks__Deciles_and_Population_Denominators_3.csv",
+        geo_data: str,
+        data_filepath: str ,
         columns: List[str] = [
             "LSOA code (2011)",
             "Total population: mid 2015 (excluding prisoners)",
