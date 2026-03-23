@@ -6,7 +6,7 @@ from alphashape import alphashape
 from shapely.geometry import Polygon
 
 class UpdatedNotebookIsochroneGenerator:
-    def __init__(self, graphml_path: str = "somerset_geojson_files/somerset_road_network_bb.graphml",
+    def __init__(self, graphml_path: str = "../examples/somerset_geojson_files/somerset_road_network_bb.graphml",
                  default_speed: float = 48.28):
         """
         Loads a road network from a local GraphML.

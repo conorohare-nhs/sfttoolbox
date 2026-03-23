@@ -26,7 +26,7 @@ class IsochroneGenerator:
         - graph_path (str): Path to the road network graphml file.
         """
         self.DEFAULT_SPEED: float = 48.28
-        self.G: nx.Graph = ox.load_graphml('somerset_geojson_files/somerset_road_network_bb.graphml')
+        self.G: nx.Graph = ox.load_graphml('../examples/somerset_geojson_files/somerset_road_network_bb.graphml')
         self.__update_graph_with_times()
 
     def __update_graph_with_times(self) -> None:
