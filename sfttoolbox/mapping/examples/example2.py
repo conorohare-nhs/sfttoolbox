@@ -3,26 +3,23 @@ Example 2 — Somerset Deprivation & Bus Route Map
 
 Downloads Somerset GeoJSON files (if missing), constructs a SomersetMap
 with deprivation scores, bus routes, and boundaries. Output: map.html
-
-Behaviour preserved exactly from original version.
 """
 
 import os
 import shutil
 import urllib.request
 import zipfile
+from pathlib import Path
 
 from sfttoolbox import mapping
 
 # ----------------------------
 # File paths
 # ----------------------------
-DATA_DIR = "somerset_geojson_files"
-SOMERSET_BOUNDARY = f"{DATA_DIR}/somerset_boundary.geojson"
+DATA_DIR = Path("somerset_geojson_files")
+SOMERSET_BOUNDARY = DATA_DIR / "somerset_boundary.geojson"
 LSOA_GEOJSON = f"{DATA_DIR}/somerset_lsoa2011.geojson"
-DEPRIVATION_CSV = (
-    f"{DATA_DIR}/File_7_-_All_IoD2019_Scores__Ranks__Deciles_and_Population_Denominators_3.csv"
-)
+DEPRIVATION_CSV = f"{DATA_DIR}/File_7_-_All_IoD2019_Scores__Ranks__Deciles_and_Population_Denominators_3.csv"
 BUSROUTES_JSON = f"{DATA_DIR}/bus_routes.json"
 
 # ----------------------------

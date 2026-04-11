@@ -3,13 +3,13 @@ Example 1 — Isochrone Generation for Somerset and Dorset
 This example demonstrates how to generate 10‑minute drive‑time isochrones
 from two hospital locations, compute shortest paths, and visualise the
 results on an interactive Folium map.
-
-Behaviour is preserved exactly as in the original script.
 """
 
 import json
+
 import folium
 from shapely.geometry import shape
+
 from sfttoolbox.mapping import IsochroneGenerator
 
 # ----------------------------
@@ -24,7 +24,7 @@ gen.load_graph(
     place_name="Yeovil",
     lat=50.9448,
     lon=-2.6343,
-    distance=24140,   # 15 miles
+    distance=24140,  # 15 miles
 )
 
 gen.load_graph(

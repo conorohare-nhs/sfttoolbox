@@ -1,15 +1,12 @@
-# --- Standard library ---
 import functools
 import os
 
-# --- Third‑party libraries ---
-import pandas as pd
 import geopandas as gpd
 import networkx as nx
 import osmnx as ox
+import pandas as pd
 from alphashape import alphashape
 from shapely.geometry import Point, Polygon
-
 
 """
 Isochrone Module
@@ -120,7 +117,7 @@ class IsochroneGenerator:
             G = ox.graph_from_place(place_name, network_type=network_type)
 
         self.__update_graph_with_times(G)
-        self.graphs[place_name] = G    # cache the graph under the provided key
+        self.graphs[place_name] = G  # cache the graph under the provided key
         return G
 
     def __update_graph_with_times(self, G: nx.MultiDiGraph) -> None:
@@ -138,7 +135,7 @@ class IsochroneGenerator:
             else:
                 speed = self.default_speed
 
-            # speed *= 0.9  # Account for real-world delays like traffic.
+            speed *= 0.9  # Account for real-world delays like traffic.
             meters_per_minute = speed * 1000 / 60
             data["time"] = float(data["length"]) / meters_per_minute
 
@@ -152,18 +149,20 @@ class IsochroneGenerator:
         Returns:
             float: Parsed speed in km/h.
         """
+        speed = max_speed
+
         if not max_speed or str(max_speed).strip().lower() == "none":
-            return self.default_speed
-        
+            speed = self.default_speed
+
         ms = str(max_speed)
         conversion = 1.60934 if "mph" in ms.lower() else 1.0
-        
+
         try:
             token = ms.split()[0]
             speed = float(token) * conversion
-        except Exception:
+        except (ValueError, IndexError):
             speed = self.default_speed
-        
+
         return speed
 
     def generate_boundary(self, place_name: str) -> gpd.GeoDataFrame:
